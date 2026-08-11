@@ -492,7 +492,7 @@
         }
 
         /* ============================================================
-                   EXPERTISE
+                   EXPERTISE (with updated FIB and ML entries)
                    ============================================================ */
         .expertise-grid {
             display: grid;
@@ -568,6 +568,13 @@
         }
         .pub-venue a {
             color: var(--accent-cyan);
+        }
+
+        /* --- Highlight for Journal Names --- */
+        .journal-highlight {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
         }
 
         .sub-section-title {
@@ -918,7 +925,7 @@
         </section>
 
         <!-- ============================================================
-        TECHNICAL EXPERTISE (with new Machine Learning entry)
+        TECHNICAL EXPERTISE (Updated FIB & ML)
         ============================================================ -->
         <section id="expertise">
             <div class="section-header reveal">
@@ -933,7 +940,7 @@
                 </div>
                 <div class="expertise-item">
                     <div class="label">Micro &amp; Nano Fabrication</div>
-                    <div class="desc">Multi-step optical lithography for Hall bar devices (6/12-terminal). FIB milling for TEM lamella and antimonide prototyping.</div>
+                    <div class="desc">Multi-step optical lithography for Hall bar devices (6/12-terminal). <strong>FIB-based single crystal device fabrications</strong>, including TEM lamella preparation and antimonide prototyping.</div>
                 </div>
                 <div class="expertise-item">
                     <div class="label">Structural &amp; Chemical Characterization</div>
@@ -951,7 +958,6 @@
                     <div class="label">Data Analysis &amp; Modelling</div>
                     <div class="desc">Python, MATLAB, LabVIEW for transport data acquisition and analysis. Quantum transport modelling.</div>
                 </div>
-                <!-- NEW Machine Learning Entry -->
                 <div class="expertise-item">
                     <div class="label">Machine learning (Basics)</div>
                     <div class="desc">Applying supervised and unsupervised learning for data-driven discovery, including regression, classification, and clustering techniques for quantum materials research.</div>
@@ -960,7 +966,7 @@
         </section>
 
         <!-- ============================================================
-        PUBLICATIONS
+        PUBLICATIONS (Updated status, journal highlights, corrected authors)
         ============================================================ -->
         <section id="publications">
             <div class="section-header reveal">
@@ -983,7 +989,7 @@
                             <span class="self">S. Sankar</span>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck
                         </div>
                         <div class="pub-venue">
-                            arXiv:2511.10471 (2025) · <em>under review</em>
+                            arXiv:2511.10471 (2025) · <em><strong>under review at Science AAAS</strong></em>
                         </div>
                     </li>
                     <li>
@@ -993,7 +999,7 @@
                             </a>
                         </div>
                         <div class="pub-authors">
-                            <span class="self">S. Sankar</span>, R. Bollampally, Y. Qin, B. Jäck
+                            <span class="self">S. Sankar</span>, X. Cheng, J. Liu, B. Jäck
                         </div>
                         <div class="pub-venue">
                             arXiv:2604.20227 (2026) · <em>under review</em>
@@ -1035,7 +1041,7 @@
                         <div class="pub-authors">
                             C. Chen, J. Zheng, Y. He, S. Wu, X. Ying, <span class="self">S. Sankar</span>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck
                         </div>
-                        <div class="pub-venue">Physical Review X <strong>16</strong>, 011009 (2026)</div>
+                        <div class="pub-venue"><span class="journal-highlight">Physical Review X</span> <strong>16</strong>, 011009 (2026)</div>
                     </li>
                     <li>
                         <div class="pub-title">
@@ -1046,7 +1052,7 @@
                         <div class="pub-authors">
                             <span class="self">S. Sankar</span>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck
                         </div>
-                        <div class="pub-venue">Nature Communications <strong>17</strong>, 423 (2025) · arXiv:2501.13602</div>
+                        <div class="pub-venue"><span class="journal-highlight">Nature Communications</span> <strong>17</strong>, 423 (2025) · arXiv:2501.13602</div>
                     </li>
                     <li>
                         <div class="pub-title">
@@ -1057,7 +1063,7 @@
                         <div class="pub-authors">
                             <span class="self">S. Sankar</span>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck
                         </div>
-                        <div class="pub-venue">Physical Review X <strong>14</strong>, 021046 (2024)</div>
+                        <div class="pub-venue"><span class="journal-highlight">Physical Review X</span> <strong>14</strong>, 021046 (2024)</div>
                     </li>
                     <li>
                         <div class="pub-title">
@@ -1068,7 +1074,7 @@
                         <div class="pub-authors">
                             C. Chen, J. Zheng, R. Yu, <span class="self">S. Sankar</span>, K. T. Law, H. C. Po, B. Jäck
                         </div>
-                        <div class="pub-venue">Physical Review Research <strong>5</strong>, 043269 (2023) · arXiv:2308.08976</div>
+                        <div class="pub-venue"><span class="journal-highlight">Physical Review Research</span> <strong>5</strong>, 043269 (2023) · arXiv:2308.08976</div>
                     </li>
                     <li>
                         <div class="pub-title">
@@ -1079,7 +1085,7 @@
                         <div class="pub-authors">
                             R. Sharma, P. Sharma, K. R. Sahoo, <span class="self">S. Sankar</span>, V. P. S. Awana, M. Kumar, T. N. Narayanan
                         </div>
-                        <div class="pub-venue">Material Today <strong>51</strong>, 85–94 (2021)</div>
+                        <div class="pub-venue"><span class="journal-highlight">Material Today</span> <strong>51</strong>, 85–94 (2021)</div>
                     </li>
                 </ul>
             </div>
