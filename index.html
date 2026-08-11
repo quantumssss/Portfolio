@@ -1,1 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Soumya Sankar · Quantum Matter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --bg-primary: #07070d;
+            --bg-secondary: #0e0e1a;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.06);
+            --text-primary: #f0f0f5;
+            --text-secondary: #b0b0c8;
+            --text-muted: #7878a0;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #8b5cf6;
+            --accent-gold: #f59e0b;
+            --accent-pink: #ec4899;
+            --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.05);
+            --radius: 16px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent-purple);
+        }
+
+        ::selection {
+            background: var(--accent-purple);
+            color: #fff;
+        }
+
+        /* ============================================================
+                   ANIMATED BACKGROUND (Cosmic Nebula)
+                   ============================================================ */
+        #cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(88, 28, 135, 0.25), transparent 70%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 180, 255, 0.10), transparent 60%),
+                radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.08), transparent 50%),
+                var(--bg-primary);
+            pointer-events: none;
+        }
+
+        #cosmic-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 50% 10%, rgba(255, 255, 255, 0.25), transparent),
+                radial-gradient(1px 1px at 70% 80%, rgba(255, 255, 255, 0.15), transparent),
+                radial-gradient(1px 1px at 90% 30%, rgba(255, 255, 255, 0.2), transparent);
+            background-size: 200px 200px;
+            background-repeat: repeat;
+            opacity: 0.5;
+            animation: twinkle 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+            animation: floatOrb 20s ease-in-out infinite alternate;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            top: -10%;
+            right: -5%;
+            background: rgba(139, 92, 246, 0.15);
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -5%;
+            left: -5%;
+            background: rgba(0, 212, 255, 0.10);
+            animation-delay: -7s;
+        }
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 50%;
+            background: rgba(236, 72, 153, 0.08);
+            animation-delay: -14s;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -40px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 30px) scale(0.9);
+            }
+            100% {
+                transform: translate(10px, -20px) scale(1.05);
+            }
+        }
+
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-cyan);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-purple);
+        }
+
+        /* ============================================================
+                   NAVIGATION
+                   ============================================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 40px;
+            background: rgba(7, 7, 13, 0.7);
+            backdrop-filter: blur(20px) saturate(1.4);
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(7, 7, 13, 0.92);
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            transition: color var(--transition), border-color var(--transition);
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ============================================================
+                   CONTAINER
+                   ============================================================ */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.10);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 4px 16px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .hero-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+        .hero-name .highlight {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .hero-affiliation {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        .hero-affiliation a {
+            color: var(--text-secondary);
+            border-bottom: 1px dashed var(--text-muted);
+        }
+        .hero-affiliation a:hover {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(4px);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: #fff;
+            border-color: transparent;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.20);
+            border-color: transparent;
+        }
+
+        .btn-outline {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.06);
+        }
+
+        /* Hero stats */
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-glass);
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-stat .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* ============================================================
+                   GLASS CARD
+                   ============================================================ */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 32px 36px;
+            transition: all var(--transition);
+        }
+        .glass-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.10);
+        }
+
+        /* ============================================================
+                   SECTION HEADERS
+                   ============================================================ */
+        section {
+            padding: 60px 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .section-header .icon {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-header .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-glass), transparent);
+        }
+
+        /* ============================================================
+                   EDUCATION (Timeline)
+                   ============================================================ */
+        .edu-item {
+            display: flex;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-glass);
+            align-items: flex-start;
+        }
+        .edu-item:last-child {
+            border-bottom: none;
+        }
+        .edu-year {
+            min-width: 100px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+        .edu-detail {
+            flex: 1;
+        }
+        .edu-detail .title {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .edu-detail .school {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .edu-detail .meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+        .edu-detail .footnote {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            border-left: 2px solid var(--accent-purple);
+            padding-left: 12px;
+        }
+        .edu-detail .footnote a {
+            color: var(--accent-cyan);
+        }
+
+        /* ============================================================
+                   EXPERTISE
+                   ============================================================ */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .expertise-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 18px 22px;
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .expertise-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(0, 212, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .expertise-item .label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.02em;
+        }
+        .expertise-item .desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   PUBLICATIONS
+                   ============================================================ */
+        .pub-list {
+            list-style: none;
+            padding: 0;
+        }
+        .pub-list li {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-glass);
+            transition: all var(--transition);
+        }
+        .pub-list li:last-child {
+            border-bottom: none;
+        }
+        .pub-list li:hover {
+            padding-left: 8px;
+        }
+        .pub-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+        .pub-title a {
+            color: var(--text-primary);
+        }
+        .pub-title a:hover {
+            color: var(--accent-cyan);
+        }
+        .pub-authors {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .pub-authors .self {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        .pub-venue {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+        .pub-venue a {
+            color: var(--accent-cyan);
+        }
+
+        .sub-section-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin: 24px 0 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ============================================================
+                   TEACHING
+                   ============================================================ */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 32px;
+        }
+        .teaching-item {
+            display: flex;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+        }
+        .teaching-item .term {
+            font-weight: 600;
+            color: var(--accent-cyan);
+            min-width: 120px;
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+        .teaching-item .course {
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+                   CONFERENCES
+                   ============================================================ */
+        .conf-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .conf-item:last-child {
+            border-bottom: none;
+        }
+        .conf-item .name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .conf-item .name .badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 2px 10px;
+            border-radius: 100px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .badge-talk {
+            background: rgba(0, 212, 255, 0.12);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .badge-poster {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--accent-gold);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+        .conf-item .detail {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+        .conf-item .detail i {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ============================================================
+                   AWARDS
+                   ============================================================ */
+        .award-list {
+            list-style: none;
+            padding: 0;
+        }
+        .award-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            font-size: 0.95rem;
+        }
+        .award-list li:last-child {
+            border-bottom: none;
+        }
+        .award-list .icon-star {
+            color: var(--accent-gold);
+            font-size: 1rem;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        footer {
+            margin-top: 60px;
+            padding: 32px 0 20px;
+            border-top: 1px solid var(--border-glass);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+        footer .heart {
+            color: var(--accent-pink);
+        }
+
+        /* ============================================================
+                   SCROLL ANIMATIONS
+                   ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 900px) {
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats {
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 12px 20px;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(7, 7, 13, 0.96);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 24px;
+                font-size: 1rem;
+                transition: right 0.4s ease;
+                border-left: 1px solid var(--border-glass);
+                padding: 40px;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            .nav-toggle.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .nav-toggle.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-toggle.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .container {
+                padding: 0 16px 40px;
+            }
+            .glass-card {
+                padding: 20px;
+            }
+            .edu-item {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .edu-year {
+                min-width: auto;
+            }
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            .hero-name {
+                font-size: clamp(2.4rem, 10vw, 3.6rem);
+            }
+            .hero-stats {
+                gap: 20px;
+            }
+            .hero-stat .number {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .teaching-item {
+                flex-direction: column;
+                gap: 2px;
+            }
+            .teaching-item .term {
+                min-width: auto;
+            }
+            .pub-list li:hover {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    COSMIC BACKGROUND
+    ============================================================ -->
+    <div id="cosmic-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
+    <nav id="navbar">
+        <div class="nav-logo">✦ S.S.</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#conferences">Conferences</a></li>
+            <li><a href="#awards">Awards</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <div class="container">
+
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <section id="hero">
+            <div class="hero-content">
+                <div class="hero-badge">✦ Quantum Matter Research</div>
+                <h1 class="hero-name">
+                    Dr. <span class="highlight">Soumya Sankar</span>
+                </h1>
+                <p class="hero-title">
+                    Experimental Physicist · Epitaxial Thin Films · Magnetotransport
+                </p>
+                <p class="hero-affiliation">
+                    Department of Physics · The Hong Kong University of Science and Technology<br />
+                    <a href="mailto:ssankar@connect.ust.hk">ssankar@connect.ust.hk</a>
+                    &nbsp;·&nbsp; Clear Water Bay, Kowloon, Hong Kong SAR
+                </p>
+                <div class="hero-actions">
+                    <a href="#publications" class="btn btn-primary">📄 View Publications</a>
+                    <a href="mailto:ssankar@connect.ust.hk" class="btn btn-outline">✉ Contact</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">8+</span>
+                        <span class="label">Peer-Reviewed Papers</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">5</span>
+                        <span class="label">Conferences</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">4</span>
+                        <span class="label">Teaching Appointments</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">2021</span>
+                        <span class="label">PhD Start</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        EDUCATION
+        ============================================================ -->
+        <section id="education">
+            <div class="section-header reveal">
+                <span class="icon">🎓</span>
+                <h2>Education</h2>
+                <span class="line"></span>
+            </div>
+            <div class="glass-card reveal">
+                <div class="edu-item">
+                    <div class="edu-year">2021 – Present</div>
+                    <div class="edu-detail">
+                        <div class="title">Ph.D. in Physics</div>
+                        <div class="school">The Hong Kong University of Science and Technology (HKUST)</div>
+                        <div class="meta">Supervisor: Prof. Berthold Jäck</div>
+                        <div class="footnote">
+                            HKUST is ranked <strong>44th globally</strong> (<a href="https://www.topuniversities.com/world-university-rankings" target="_blank">QS 2026</a>)
+                            and <strong>6th in Asia</strong> (<a href="https://hkust.edu.hk/news/hkust-rises-6th-asia-and-2nd-hong-kong-qs-asia-university-rankings-2026" target="_blank">QS Asia 2026</a>).
+                        </div>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year">2017 – 2019</div>
+                    <div class="edu-detail">
+                        <div class="title">M.Sc. in Physics (First Class)</div>
+                        <div class="school">Central University of Karnataka</div>
+                        <div class="meta">CGPA: 8.29 / 10.00</div>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-year">2014 – 2017</div>
+                    <div class="edu-detail">
+                        <div class="title">B.Sc. in Physics (First Class with Distinction)</div>
+                        <div class="school">Utkal University (Nayagarh Autonomous College)</div>
+                        <div class="meta">Score: 85.5 / 100</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        TECHNICAL EXPERTISE (with new Machine Learning entry)
+        ============================================================ -->
+        <section id="expertise">
+            <div class="section-header reveal">
+                <span class="icon">⚛</span>
+                <h2>Technical Expertise</h2>
+                <span class="line"></span>
+            </div>
+            <div class="expertise-grid reveal">
+                <div class="expertise-item">
+                    <div class="label">Epitaxial Thin-Film Synthesis</div>
+                    <div class="desc">Molecular Beam Epitaxy (MBE) of intermetallic Kagome lattice compounds (FeSn, Fe₃Sn, Co₃Sn).</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="label">Micro &amp; Nano Fabrication</div>
+                    <div class="desc">Multi-step optical lithography for Hall bar devices (6/12-terminal). FIB milling for TEM lamella and antimonide prototyping.</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="label">Structural &amp; Chemical Characterization</div>
+                    <div class="desc">Thin-film XRD, XRR, phi-scans for phase identification, thickness, and epitaxial relationships.</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="label">Advanced Microscopy</div>
+                    <div class="desc">STEM/TEM for atomic-scale analysis. In-situ RHEED for surface reconstruction. AFM for surface roughness.</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="label">Magnetotransport Measurements</div>
+                    <div class="desc">Nonlinear &amp; in-plane Hall effect, full-wave mixing using oscilloscope-based techniques at low and room temperature.</div>
+                </div>
+                <div class="expertise-item">
+                    <div class="label">Data Analysis &amp; Modelling</div>
+                    <div class="desc">Python, MATLAB, LabVIEW for transport data acquisition and analysis. Quantum transport modelling.</div>
+                </div>
+                <!-- NEW Machine Learning Entry -->
+                <div class="expertise-item">
+                    <div class="label">Machine learning (Basics)</div>
+                    <div class="desc">Applying supervised and unsupervised learning for data-driven discovery, including regression, classification, and clustering techniques for quantum materials research.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PUBLICATIONS
+        ============================================================ -->
+        <section id="publications">
+            <div class="section-header reveal">
+                <span class="icon">📄</span>
+                <h2>Publications</h2>
+                <span class="line"></span>
+            </div>
+
+            <div class="glass-card reveal">
+                <!-- ===== Preprints ===== -->
+                <div class="sub-section-title">Preprints</div>
+                <ul class="pub-list">
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://arxiv.org/abs/2511.10471" target="_blank">
+                                Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            <span class="self">S. Sankar</span>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck
+                        </div>
+                        <div class="pub-venue">
+                            arXiv:2511.10471 (2025) · <em>under review</em>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://arxiv.org/abs/2604.20227" target="_blank">
+                                Distinguishing and Separating In-Plane Hall Responses
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            <span class="self">S. Sankar</span>, R. Bollampally, Y. Qin, B. Jäck
+                        </div>
+                        <div class="pub-venue">
+                            arXiv:2604.20227 (2026) · <em>under review</em>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            Active learning Molecular Beam Epitaxy of Complex Quantum Materials
+                        </div>
+                        <div class="pub-authors">
+                            R. Bollampally, <span class="self">S. Sankar</span>, Y. Qin, B. Jäck
+                        </div>
+                        <div class="pub-venue">
+                            <em>manuscript under preparation</em>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            Observation of temperature independent giant Anomalous Hall Response in the epitaxial thin film of Lego Kagome Ferromagnet Co₃Sn
+                        </div>
+                        <div class="pub-authors">
+                            Y. Qin§, <span class="self">S. Sankar</span>§, X. Cheng, Y. Jiang, J. Tang, D. Li, S. Lei, J. Liu, B. Jäck
+                        </div>
+                        <div class="pub-venue">
+                            <em>manuscript under preparation</em>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- ===== Peer-Reviewed Publications ===== -->
+                <div class="sub-section-title" style="margin-top:32px;">Peer-Reviewed Publications</div>
+                <ul class="pub-list">
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://journals.aps.org/prx/abstract/10.1103/c93j-k53f" target="_blank">
+                                Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            C. Chen, J. Zheng, Y. He, S. Wu, X. Ying, <span class="self">S. Sankar</span>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck
+                        </div>
+                        <div class="pub-venue">Physical Review X <strong>16</strong>, 011009 (2026)</div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://arxiv.org/abs/2501.13602" target="_blank">
+                                Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            <span class="self">S. Sankar</span>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck
+                        </div>
+                        <div class="pub-venue">Nature Communications <strong>17</strong>, 423 (2025) · arXiv:2501.13602</div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://doi.org/10.1103/PhysRevX.14.021046" target="_blank">
+                                Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            <span class="self">S. Sankar</span>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck
+                        </div>
+                        <div class="pub-venue">Physical Review X <strong>14</strong>, 021046 (2024)</div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://arxiv.org/abs/2308.08976" target="_blank">
+                                Visualizing the localized electrons of a kagome flat band
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            C. Chen, J. Zheng, R. Yu, <span class="self">S. Sankar</span>, K. T. Law, H. C. Po, B. Jäck
+                        </div>
+                        <div class="pub-venue">Physical Review Research <strong>5</strong>, 043269 (2023) · arXiv:2308.08976</div>
+                    </li>
+                    <li>
+                        <div class="pub-title">
+                            <a href="https://doi.org/10.1016/j.mattod.2021.06.012" target="_blank">
+                                Giant Photoresponsivity of Transfer-Free Grown Fluorographene–MoS₂ Heterostructured Ultra-Stable Transistors
+                            </a>
+                        </div>
+                        <div class="pub-authors">
+                            R. Sharma, P. Sharma, K. R. Sahoo, <span class="self">S. Sankar</span>, V. P. S. Awana, M. Kumar, T. N. Narayanan
+                        </div>
+                        <div class="pub-venue">Material Today <strong>51</strong>, 85–94 (2021)</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        TEACHING
+        ============================================================ -->
+        <section id="teaching">
+            <div class="section-header reveal">
+                <span class="icon">📚</span>
+                <h2>Teaching Experience</h2>
+                <span class="line"></span>
+            </div>
+            <div class="glass-card reveal">
+                <div class="teaching-grid">
+                    <div class="teaching-item">
+                        <span class="term">Spring 2021–22</span>
+                        <span class="course"><strong>PHYS 3152</strong> · Methods of Experimental Physics I</span>
+                    </div>
+                    <div class="teaching-item">
+                        <span class="term">Fall 2022–23</span>
+                        <span class="course"><strong>PHYS 3152</strong> · Methods of Experimental Physics I</span>
+                    </div>
+                    <div class="teaching-item">
+                        <span class="term">Spring 2022–23</span>
+                        <span class="course"><strong>PHYS 1314</strong> · Honors General Physics II</span>
+                    </div>
+                    <div class="teaching-item">
+                        <span class="term">Fall 2023–24</span>
+                        <span class="course"><strong>PHYS 1003</strong> · Energy and Related Environmental Issues</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        CONFERENCES
+        ============================================================ -->
+        <section id="conferences">
+            <div class="section-header reveal">
+                <span class="icon">🎤</span>
+                <h2>Conference Presentations</h2>
+                <span class="line"></span>
+            </div>
+            <div class="glass-card reveal">
+                <div class="conf-item">
+                    <div class="name">IAS Quantum Forum: Altermagnetism and Beyond</div>
+                    <div class="detail">2026 · Hong Kong · <i>Attendee</i></div>
+                </div>
+                <div class="conf-item">
+                    <div class="name">
+                        APS March Meeting 2024
+                        <span class="badge badge-talk">Oral</span>
+                    </div>
+                    <div class="detail">Minneapolis, USA · <i>“Experimental study of in-plane Hall effect in a magnetic Weyl semimetal”</i></div>
+                </div>
+                <div class="conf-item">
+                    <div class="name">
+                        APS March Meeting 2023
+                        <span class="badge badge-poster">Poster</span>
+                    </div>
+                    <div class="detail">Las Vegas, USA · <i>“Mapping out the topological phase diagram of FeSn”</i></div>
+                </div>
+                <div class="conf-item">
+                    <div class="name">Hongkong-Guangdong-Macao Conference</div>
+                    <div class="detail">2023 · <i>Attendee</i></div>
+                </div>
+                <div class="conf-item">
+                    <div class="name">Topological Matter School (TMS 23)</div>
+                    <div class="detail">Spain · <i>Attendee</i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        AWARDS
+        ============================================================ -->
+        <section id="awards">
+            <div class="section-header reveal">
+                <span class="icon">🏆</span>
+                <h2>Awards &amp; Fellowships</h2>
+                <span class="line"></span>
+            </div>
+            <div class="glass-card reveal">
+                <ul class="award-list">
+                    <li><span class="icon-star">✦</span> Hong Kong UGC Travel Grant for APS March Meeting 2024</li>
+                    <li><span class="icon-star">✦</span> Hong Kong UGC Travel Grant for APS March Meeting 2023</li>
+                    <li><span class="icon-star">✦</span> HKUST Postgraduate Scholarship (PGS) for PhD studies (2021–2025)</li>
+                    <li><span class="icon-star">✦</span> Indo-Max Planck Partner Group Fellowship for M.Sc. thesis project (2018–2019)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        FOOTER
+        ============================================================ -->
+        <footer>
+            <p>Dr. Soumya Sankar · Department of Physics · HKUST</p>
+            <p style="margin-top:4px;">
+                Updated: <span id="updateDate"></span> &nbsp;·&nbsp; Made with <span class="heart">♥</span> &amp; ⚛
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+
+            // ---- Set update date ----
+            document.getElementById('updateDate').textContent =
+                new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            // ---- Mobile nav toggle ----
+            const toggle = document.getElementById('navToggle');
+            const links = document.getElementById('navLinks');
+
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('open');
+                links.classList.toggle('open');
+            });
+
+            // Close nav on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('open');
+                    links.classList.remove('open');
+                });
+            });
+
+            // ---- Navbar scroll effect ----
+            const navbar = document.getElementById('navbar');
+            let lastScroll = 0;
+            window.addEventListener('scroll', function() {
+                const current = window.scrollY;
+                if (current > 60) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                lastScroll = current;
+            });
+
+            // ---- Intersection Observer for reveal animations ----
+            const reveals = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.10,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            reveals.forEach(el => observer.observe(el));
+
+            // ---- Smooth anchor scroll ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
