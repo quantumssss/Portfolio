@@ -22,23 +22,26 @@
             --bg-secondary: #0a0c1c;
             --bg-card: rgba(255, 255, 255, 0.045);
             --bg-card-hover: rgba(255, 255, 255, 0.085);
-            --border-glass: rgba(255, 255, 255, 0.09);
+            --border-glass: rgba(255, 255, 255, 0.10);
             --text-primary: #f5f5fc;
-            --text-secondary: #b8bad8;
-            --text-muted: #7d80aa;
+            --text-secondary: #c0c2e0;
+            --text-muted: #8a8db8;
             --accent-cyan: #22d3ee;
             --accent-purple: #a855f7;
             --accent-gold: #fbbf24;
             --accent-pink: #f472b6;
             --accent-lime: #a3e635;
-            --shadow-glow: 0 0 50px rgba(168, 85, 247, 0.18);
+            --accent-emerald: #34d399;
+            --accent-orange: #fb923c;
+            --shadow-glow: 0 0 50px rgba(168, 85, 247, 0.22);
             --radius: 16px;
             --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         html {
+            font-size: 18px;
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -47,7 +50,7 @@
             -moz-osx-font-smoothing: grayscale;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.65;
             overflow-x: hidden;
         }
 
@@ -76,10 +79,11 @@
             height: 100%;
             z-index: 0;
             background:
-                radial-gradient(ellipse at 15% 18%, rgba(168, 85, 247, 0.32), transparent 58%),
-                radial-gradient(ellipse at 85% 12%, rgba(34, 211, 238, 0.22), transparent 55%),
-                radial-gradient(ellipse at 72% 88%, rgba(244, 114, 182, 0.20), transparent 55%),
-                radial-gradient(ellipse at 22% 92%, rgba(163, 230, 53, 0.12), transparent 50%),
+                radial-gradient(ellipse at 15% 18%, rgba(168, 85, 247, 0.42), transparent 58%),
+                radial-gradient(ellipse at 85% 12%, rgba(34, 211, 238, 0.30), transparent 55%),
+                radial-gradient(ellipse at 72% 88%, rgba(244, 114, 182, 0.28), transparent 55%),
+                radial-gradient(ellipse at 22% 92%, rgba(163, 230, 53, 0.16), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(251, 191, 36, 0.08), transparent 60%),
                 var(--bg-primary);
             pointer-events: none;
         }
@@ -89,43 +93,43 @@
             position: absolute;
             inset: 0;
             background-image:
-                radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, 0.2), transparent),
-                radial-gradient(1px 1px at 50% 10%, rgba(255, 255, 255, 0.25), transparent),
-                radial-gradient(1px 1px at 70% 80%, rgba(255, 255, 255, 0.15), transparent),
-                radial-gradient(1px 1px at 90% 30%, rgba(255, 255, 255, 0.2), transparent);
-            background-size: 200px 200px;
+                radial-gradient(1.5px 1.5px at 10% 20%, rgba(255, 255, 255, 0.45), transparent),
+                radial-gradient(1.5px 1.5px at 30% 70%, rgba(255, 255, 255, 0.30), transparent),
+                radial-gradient(1.5px 1.5px at 50% 10%, rgba(255, 255, 255, 0.38), transparent),
+                radial-gradient(1.5px 1.5px at 70% 80%, rgba(255, 255, 255, 0.22), transparent),
+                radial-gradient(1.5px 1.5px at 90% 30%, rgba(255, 255, 255, 0.30), transparent);
+            background-size: 220px 220px;
             background-repeat: repeat;
-            opacity: 0.5;
+            opacity: 0.6;
             animation: twinkle 8s ease-in-out infinite alternate;
         }
 
         @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.7; }
+            0% { opacity: 0.35; }
+            100% { opacity: 0.8; }
         }
 
         /* Floating orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(90px);
             pointer-events: none;
             z-index: 0;
-            opacity: 0.45;
+            opacity: 0.55;
             animation: floatOrb 20s ease-in-out infinite alternate;
         }
         .orb-1 {
-            width: 500px; height: 500px; top: -10%; right: -5%;
-            background: rgba(168, 85, 247, 0.30); animation-delay: 0s;
+            width: 560px; height: 560px; top: -12%; right: -8%;
+            background: rgba(168, 85, 247, 0.38); animation-delay: 0s;
         }
         .orb-2 {
-            width: 400px; height: 400px; bottom: -5%; left: -5%;
-            background: rgba(34, 211, 238, 0.22); animation-delay: -7s;
+            width: 440px; height: 440px; bottom: -8%; left: -8%;
+            background: rgba(34, 211, 238, 0.28); animation-delay: -7s;
         }
         .orb-3 {
-            width: 300px; height: 300px; top: 40%; left: 50%;
-            background: rgba(244, 114, 182, 0.20); animation-delay: -14s;
+            width: 360px; height: 360px; top: 38%; left: 48%;
+            background: rgba(244, 114, 182, 0.26); animation-delay: -14s;
         }
 
         @keyframes floatOrb {
@@ -138,10 +142,15 @@
         /* ============================================================
                    SCROLLBAR
                    ============================================================ */
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-primary); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-pink), var(--accent-gold));
+        }
 
         /* ============================================================
                    NAVIGATION
@@ -153,7 +162,7 @@
             z-index: 1000;
             padding: 16px 40px;
             background: rgba(5, 6, 15, 0.72);
-            backdrop-filter: blur(20px) saturate(1.4);
+            backdrop-filter: blur(22px) saturate(1.5);
             border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: space-between;
@@ -165,9 +174,9 @@
 
         .nav-logo {
             font-weight: 800;
-            font-size: 1.15rem;
+            font-size: 1.35rem;
             letter-spacing: -0.035em;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -175,9 +184,9 @@
 
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 22px;
             list-style: none;
-            font-size: 0.82rem;
+            font-size: 0.92rem;
             font-weight: 500;
             letter-spacing: 0.02em;
         }
@@ -205,7 +214,7 @@
         }
         .nav-toggle span {
             display: block;
-            width: 24px; height: 2px;
+            width: 26px; height: 2px;
             background: var(--text-primary);
             border-radius: 2px;
             transition: var(--transition);
@@ -217,7 +226,7 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto;
             padding: 0 24px 60px;
         }
@@ -229,7 +238,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 90px;
             position: relative;
         }
 
@@ -246,28 +255,28 @@
 
         .hero-badge {
             display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #7dd3fc;
-            background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(168, 85, 247, 0.16));
-            border: 1px solid rgba(168, 85, 247, 0.35);
-            padding: 4px 16px;
+            color: #a5f3fc;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.20), rgba(168, 85, 247, 0.22), rgba(244, 114, 182, 0.16));
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            padding: 6px 20px;
             border-radius: 100px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 26px rgba(34, 211, 238, 0.14);
+            margin-bottom: 22px;
+            box-shadow: 0 0 32px rgba(34, 211, 238, 0.20);
         }
 
         .hero-name {
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-size: clamp(3.2rem, 8vw, 6rem);
             font-weight: 800;
             line-height: 1.05;
-            letter-spacing: -0.035em;
-            margin-bottom: 12px;
+            letter-spacing: -0.04em;
+            margin-bottom: 14px;
         }
         .hero-name .highlight {
-            background: linear-gradient(100deg, #22d3ee, #a855f7 40%, #f472b6 70%, #fbbf24);
+            background: linear-gradient(100deg, #22d3ee, #a855f7 35%, #f472b6 65%, #fbbf24 90%);
             background-size: 220% 100%;
             -webkit-background-clip: text;
             background-clip: text;
@@ -277,16 +286,16 @@
         @keyframes shimmer { to { background-position: 220% 0; } }
 
         .hero-title {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
             color: var(--text-secondary);
             font-weight: 400;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .hero-affiliation {
             color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 24px;
+            font-size: 1.05rem;
+            margin-bottom: 26px;
         }
 
         .hero-affiliation a {
@@ -301,18 +310,18 @@
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 8px;
+            gap: 16px;
+            margin-top: 10px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
+            gap: 9px;
+            padding: 14px 30px;
             border-radius: 60px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: all var(--transition);
             border: none;
             cursor: pointer;
@@ -327,62 +336,65 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #22d3ee, #a855f7 55%, #f472b6);
-            background-size: 180% 100%;
+            background: linear-gradient(135deg, #22d3ee, #a855f7 50%, #f472b6 85%, #fbbf24);
+            background-size: 200% 100%;
             color: #fff;
             border-color: transparent;
             transition: all var(--transition), background-position 0.6s ease;
         }
         .btn-primary:hover {
             background-position: 100% 0;
-            box-shadow: 0 0 44px rgba(168, 85, 247, 0.45);
+            box-shadow: 0 0 46px rgba(168, 85, 247, 0.55);
             border-color: transparent;
         }
 
-        .btn-outline { border-color: rgba(255, 255, 255, 0.15); }
+        .btn-outline { border-color: rgba(255, 255, 255, 0.18); }
         .btn-outline:hover {
             border-color: var(--accent-cyan);
-            background: rgba(0, 212, 255, 0.06);
+            background: rgba(34, 211, 238, 0.10);
         }
 
         /* Hero stats */
         .hero-stats {
             display: flex;
             gap: 48px;
-            margin-top: 40px;
-            padding-top: 32px;
+            margin-top: 44px;
+            padding-top: 34px;
             border-top: 1px solid var(--border-glass);
             flex-wrap: wrap;
         }
         .hero-stat { display: flex; flex-direction: column; }
         .hero-stat .number {
-            font-size: 1.8rem;
+            font-size: 2.1rem;
             font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -0.035em;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #67e8f9, #c084fc, #f9a8d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .hero-stat .label {
-            font-size: 0.8rem;
+            font-size: 0.84rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.05em;
         }
 
         /* Hero photo */
         .hero-photo-wrap {
             position: relative;
-            width: 300px; height: 300px;
+            width: 310px; height: 310px;
             border-radius: 50%;
             display: grid;
             place-items: center;
             flex-shrink: 0;
-            box-shadow: 0 0 80px rgba(168, 85, 247, 0.35), 0 0 160px rgba(34, 211, 238, 0.12);
+            box-shadow: 0 0 90px rgba(168, 85, 247, 0.45), 0 0 170px rgba(34, 211, 238, 0.18);
             animation: bob 7s ease-in-out infinite;
         }
         .hero-photo-wrap::before {
             content: '';
             position: absolute;
-            inset: -6px;
+            inset: -7px;
             border-radius: 50%;
             background: conic-gradient(from 0deg, #22d3ee, #a855f7, #f472b6, #fbbf24, #a3e635, #22d3ee);
             animation: ringSpin 9s linear infinite;
@@ -418,43 +430,63 @@
                    GLASS CARD
                    ============================================================ */
         .glass-card {
+            position: relative;
+            overflow: hidden;
             background: var(--bg-card);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius);
-            padding: 32px 36px;
+            padding: 36px 40px;
             transition: all var(--transition);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #22d3ee, #a855f7, #f472b6, #fbbf24);
+            opacity: 0.85;
         }
         .glass-card:hover {
             background: var(--bg-card-hover);
-            border-color: rgba(255, 255, 255, 0.10);
+            border-color: rgba(168, 85, 247, 0.30);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.14);
         }
 
         /* ============================================================
                    SECTION HEADERS
                    ============================================================ */
-        section { padding: 60px 0 20px; }
+        section { padding: 64px 0 24px; }
 
         .section-header {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
-        .section-header .icon { font-size: 1.6rem; line-height: 1; }
+        .section-header .icon {
+            font-size: 1.6rem;
+            line-height: 1;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.20), rgba(168, 85, 247, 0.22), rgba(244, 114, 182, 0.16));
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            padding: 8px 10px;
+            border-radius: 14px;
+            box-shadow: 0 0 26px rgba(34, 211, 238, 0.16);
+        }
         .section-header h2 {
-            font-size: 1.8rem;
+            font-size: 2.1rem;
             font-weight: 700;
-            letter-spacing: -0.035em;
-            background: linear-gradient(100deg, #ffffff 0%, #a5f3fc 32%, #d8b4fe 66%, #fbcfe8 100%);
+            letter-spacing: -0.04em;
+            background: linear-gradient(100deg, #ffffff 0%, #67e8f9 25%, #c084fc 55%, #f9a8d4 80%, #fde68a 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .section-header .line {
             flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border-glass), transparent);
+            height: 2px;
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.45), rgba(168, 85, 247, 0.35), transparent);
+            border-radius: 2px;
         }
 
         /* ============================================================
@@ -462,29 +494,32 @@
                    ============================================================ */
         .edu-item {
             display: flex;
-            gap: 24px;
-            padding: 20px 0;
+            gap: 26px;
+            padding: 22px 0;
             border-bottom: 1px solid var(--border-glass);
             align-items: flex-start;
         }
         .edu-item:last-child { border-bottom: none; }
         .edu-year {
-            min-width: 100px;
-            font-weight: 600;
-            color: var(--accent-cyan);
-            font-size: 0.95rem;
+            min-width: 110px;
+            font-weight: 700;
+            font-size: 1rem;
             letter-spacing: -0.01em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .edu-detail { flex: 1; }
-        .edu-detail .title { font-weight: 600; font-size: 1.05rem; }
-        .edu-detail .school { color: var(--text-secondary); font-size: 0.95rem; }
-        .edu-detail .meta { color: var(--text-muted); font-size: 0.85rem; margin-top: 2px; }
+        .edu-detail .title { font-weight: 700; font-size: 1.15rem; }
+        .edu-detail .school { color: var(--text-secondary); font-size: 1rem; }
+        .edu-detail .meta { color: var(--text-muted); font-size: 0.9rem; margin-top: 3px; }
         .edu-detail .footnote {
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 4px;
-            border-left: 2px solid var(--accent-purple);
-            padding-left: 12px;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 14px;
         }
         .edu-detail .footnote a { color: var(--accent-cyan); }
 
@@ -492,16 +527,298 @@
                    RESEARCH INTERESTS
                    ============================================================ */
         .research-interests p {
-            font-size: 0.95rem;
+            font-size: 1.08rem;
             color: var(--text-secondary);
-            line-height: 1.75;
+            line-height: 1.8;
         }
-        .research-interests p strong {
-            color: var(--text-primary);
+        .research-interests p strong { color: var(--text-primary); }
+
+        /* ============================================================
+                   EXPERTISE
+                   ============================================================ */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .expertise-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 20px 24px;
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .expertise-item:nth-child(3n+1) { border-color: rgba(34, 211, 238, 0.28); }
+        .expertise-item:nth-child(3n+2) { border-color: rgba(168, 85, 247, 0.28); }
+        .expertise-item:nth-child(3n+3) { border-color: rgba(244, 114, 182, 0.28); }
+        .expertise-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(251, 191, 36, 0.45);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(168, 85, 247, 0.22);
+        }
+        .expertise-item .label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.02em;
+        }
+        .expertise-item .desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
         }
 
         /* ============================================================
-                   RESEARCH EXPERIENCE
+                   PUBLICATIONS
+                   ============================================================ */
+        .pub-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding: 18px 22px;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.08), rgba(168, 85, 247, 0.10), rgba(244, 114, 182, 0.08));
+            border: 1px solid rgba(168, 85, 247, 0.28);
+            border-radius: 14px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.06);
+        }
+        .pub-summary span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .pub-summary span::before {
+            content: '●';
+            color: var(--accent-cyan);
+            font-size: 0.6rem;
+        }
+
+        .pub-list { list-style: none; padding: 0; }
+
+        .pub-list li.pub-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 22px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-glass);
+            transition: all var(--transition);
+        }
+        .pub-list li.pub-item:hover { padding-left: 0; }
+        .pub-list li.pub-item:last-child { border-bottom: none; }
+
+        .pub-body { flex: 1; min-width: 0; }
+
+        /* --- Journal cover thumbnails --- */
+        .pub-cover {
+            flex: 0 0 auto;
+            width: 88px;
+            height: 118px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.60), 0 0 0 1px rgba(255, 255, 255, 0.10);
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.35s ease;
+            cursor: default;
+            position: relative;
+            background: var(--bg-card);
+        }
+        .pub-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .pub-item:hover .pub-cover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 20px 44px rgba(168, 85, 247, 0.55), 0 0 34px rgba(34, 211, 238, 0.25);
+        }
+
+        /* arXiv CSS covers (preprints) */
+        .pub-cover .cover-top {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 10px 7px 0;
+        }
+        .pub-cover .cover-journal {
+            font-size: 0.56rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.15;
+        }
+        .pub-cover .cover-vol {
+            font-size: 0.48rem;
+            opacity: 0.78;
+            font-weight: 500;
+        }
+        .pub-cover .cover-year {
+            font-size: 0.62rem;
+            font-weight: 700;
+            align-self: flex-end;
+            opacity: 0.9;
+            padding: 0 7px 10px;
+        }
+
+        .cover-arxiv {
+            background: linear-gradient(145deg, #1f2937, #4b5563 45%, #374151);
+            color: #e5e7eb;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.60), 0 0 20px rgba(34, 211, 238, 0.08);
+        }
+
+        .pub-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            line-height: 1.45;
+        }
+        .pub-title a { color: var(--text-primary); }
+        .pub-title a:hover { color: var(--accent-cyan); }
+
+        .pub-authors {
+            color: var(--text-secondary);
+            font-size: 0.96rem;
+            line-height: 1.55;
+        }
+        .pub-authors .self {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+        .pub-venue {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        .pub-venue a { color: var(--accent-cyan); }
+
+        .journal-highlight {
+            color: #67e8f9;
+            font-weight: 800;
+            text-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+        }
+
+        .sub-section-title {
+            font-weight: 700;
+            font-size: 1.18rem;
+            color: var(--text-secondary);
+            margin: 30px 0 14px;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sub-section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.35), transparent);
+        }
+
+        /* Patent */
+        .patent-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+        }
+        .patent-badge {
+            flex: 0 0 auto;
+            font-size: 0.66rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--accent-gold);
+            background: rgba(251, 191, 36, 0.14);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-top: 2px;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.12);
+        }
+        .patent-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .patent-text strong { color: var(--text-primary); }
+
+        /* ============================================================
+                   TEACHING
+                   ============================================================ */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 34px;
+        }
+        .teaching-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1rem;
+        }
+        .teaching-item .term {
+            font-weight: 700;
+            color: var(--accent-cyan);
+            min-width: 130px;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+        }
+        .teaching-item .course { color: var(--text-secondary); }
+
+        /* ============================================================
+                   CONFERENCES
+                   ============================================================ */
+        .conf-item {
+            padding: 16px 10px;
+            border-bottom: 1px solid var(--border-glass);
+            border-radius: 8px;
+            transition: all var(--transition);
+        }
+        .conf-item:last-child { border-bottom: none; }
+        .conf-item:hover {
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.06), rgba(168, 85, 247, 0.06), transparent);
+            padding-left: 16px;
+        }
+        .conf-item .name { font-weight: 700; font-size: 1.06rem; }
+        .conf-item .name .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 3px 12px;
+            border-radius: 100px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .badge-talk {
+            background: rgba(34, 211, 238, 0.14);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(34, 211, 238, 0.35);
+        }
+        .badge-poster {
+            background: rgba(251, 191, 36, 0.14);
+            color: var(--accent-gold);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+        }
+        .conf-item .detail {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 3px;
+        }
+        .conf-item .detail i { color: var(--text-muted); font-style: italic; }
+
+        /* ============================================================
+                   INTERNSHIPS
                    ============================================================ */
         .exp-item {
             padding: 16px 0;
@@ -516,365 +833,53 @@
             gap: 8px;
             margin-bottom: 4px;
         }
-        .exp-item .exp-title { font-weight: 600; font-size: 1.02rem; }
+        .exp-item .exp-title { font-weight: 700; font-size: 1.08rem; }
         .exp-item .exp-date {
-            font-size: 0.82rem;
+            font-size: 0.9rem;
             color: var(--accent-cyan);
-            font-weight: 600;
+            font-weight: 700;
             white-space: nowrap;
         }
         .exp-item .exp-place {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 8px;
         }
         .exp-item .exp-place em { color: var(--text-muted); }
-        .exp-item ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .exp-item ul li {
-            position: relative;
-            padding-left: 18px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 5px;
-            line-height: 1.6;
-        }
-        .exp-item ul li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent-cyan);
-            font-size: 0.8rem;
-            top: 1px;
-        }
-
-        /* ============================================================
-                   NOTABLE CONTRIBUTIONS
-                   ============================================================ */
-        .contrib-list {
-            list-style: none;
-            padding: 0;
-        }
-        .contrib-list li {
-            position: relative;
-            padding: 14px 0 14px 28px;
-            border-bottom: 1px solid var(--border-glass);
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-            line-height: 1.65;
-        }
-        .contrib-list li:last-child { border-bottom: none; }
-        .contrib-list li::before {
-            content: '✦';
-            position: absolute;
-            left: 0;
-            top: 15px;
-            color: var(--accent-gold);
-            font-size: 0.85rem;
-        }
-        .contrib-list li strong { color: var(--text-primary); }
-
-        /* ============================================================
-                   EXPERTISE
-                   ============================================================ */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        .expertise-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 18px 22px;
-            transition: all var(--transition);
-            cursor: default;
-        }
-        .expertise-item:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(168, 85, 247, 0.35);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.14);
-        }
-        .expertise-item .label {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
-            letter-spacing: 0.02em;
-        }
-        .expertise-item .desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-
-        /* ============================================================
-                   PUBLICATIONS
-                   ============================================================ */
-        .pub-summary {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 28px;
-            padding: 16px 20px;
-            background: linear-gradient(135deg, rgba(34, 211, 238, 0.06), rgba(168, 85, 247, 0.06));
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-        }
-        .pub-summary span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .pub-summary span::before {
-            content: '●';
-            color: var(--accent-cyan);
-            font-size: 0.55rem;
-        }
-
-        .pub-list { list-style: none; padding: 0; }
-
-        .pub-list li.pub-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--border-glass);
-            transition: all var(--transition);
-        }
-        .pub-list li.pub-item:hover { padding-left: 0; }
-        .pub-list li.pub-item:last-child { border-bottom: none; }
-
-        .pub-body { flex: 1; min-width: 0; }
-
-        /* --- Journal cover thumbnails --- */
-        .pub-cover {
-            flex: 0 0 auto;
-            width: 78px;
-            height: 104px;
-            border-radius: 6px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
-            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        box-shadow 0.35s ease;
-            cursor: default;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: var(--bg-card);
-        }
-        .pub-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .pub-item:hover .pub-cover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 16px 38px rgba(168, 85, 247, 0.42);
-        }
-
-        /* arXiv CSS covers (preprints) */
-        .pub-cover .cover-top {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            padding: 8px 6px 0;
-        }
-        .pub-cover .cover-journal {
-            font-size: 0.48rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            line-height: 1.15;
-        }
-        .pub-cover .cover-vol {
-            font-size: 0.42rem;
-            opacity: 0.75;
-            font-weight: 500;
-        }
-        .pub-cover .cover-year {
-            font-size: 0.55rem;
-            font-weight: 700;
-            align-self: flex-end;
-            opacity: 0.85;
-            padding: 0 6px 8px;
-        }
-
-        .cover-arxiv {
-            background: linear-gradient(145deg, #1f2937, #4b5563 50%, #374151);
-            color: #e5e7eb;
-        }
-
-        .pub-title {
-            font-weight: 600;
-            font-size: 0.98rem;
-            margin-bottom: 3px;
-            line-height: 1.45;
-        }
-        .pub-title a { color: var(--text-primary); }
-        .pub-title a:hover { color: var(--accent-cyan); }
-
-        .pub-authors {
-            color: var(--text-secondary);
-            font-size: 0.86rem;
-            line-height: 1.5;
-        }
-        .pub-authors .self {
-            color: var(--accent-cyan);
-            font-weight: 700;
-        }
-        .pub-venue {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-            margin-top: 3px;
-        }
-        .pub-venue a { color: var(--accent-cyan); }
-
-        .journal-highlight {
-            color: #67e8f9;
-            font-weight: 700;
-            text-shadow: 0 0 22px rgba(34, 211, 238, 0.35);
-        }
-
-        .sub-section-title {
-            font-weight: 700;
-            font-size: 1.02rem;
-            color: var(--text-secondary);
-            margin: 26px 0 12px;
-            letter-spacing: 0.02em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .sub-section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border-glass), transparent);
-        }
-
-        /* Patent */
-        .patent-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 14px 0;
-        }
-        .patent-badge {
-            flex: 0 0 auto;
-            font-size: 0.6rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent-gold);
-            background: rgba(251, 191, 36, 0.12);
-            border: 1px solid rgba(251, 191, 36, 0.25);
-            padding: 3px 10px;
-            border-radius: 100px;
-            margin-top: 2px;
-        }
-        .patent-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.55;
-        }
-        .patent-text strong { color: var(--text-primary); }
-
-        /* ============================================================
-                   TEACHING
-                   ============================================================ */
-        .teaching-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 32px;
-        }
-        .teaching-item {
-            display: flex;
-            gap: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 0.9rem;
-        }
-        .teaching-item .term {
-            font-weight: 600;
-            color: var(--accent-cyan);
-            min-width: 120px;
-            font-size: 0.8rem;
-            letter-spacing: 0.02em;
-        }
-        .teaching-item .course { color: var(--text-secondary); }
-
-        /* ============================================================
-                   CONFERENCES
-                   ============================================================ */
-        .conf-item {
-            padding: 14px 0;
-            border-bottom: 1px solid var(--border-glass);
-        }
-        .conf-item:last-child { border-bottom: none; }
-        .conf-item .name { font-weight: 600; font-size: 0.98rem; }
-        .conf-item .name .badge {
-            display: inline-block;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 2px 10px;
-            border-radius: 100px;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-        .badge-talk {
-            background: rgba(34, 211, 238, 0.12);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(34, 211, 238, 0.25);
-        }
-        .badge-poster {
-            background: rgba(251, 191, 36, 0.12);
-            color: var(--accent-gold);
-            border: 1px solid rgba(251, 191, 36, 0.25);
-        }
-        .conf-item .detail {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 2px;
-        }
-        .conf-item .detail i { color: var(--text-muted); font-style: italic; }
 
         /* ============================================================
                    AWARDS
                    ============================================================ */
         .award-list { list-style: none; padding: 0; }
         .award-list li {
-            padding: 10px 0;
+            padding: 12px 8px;
             border-bottom: 1px solid var(--border-glass);
             display: flex;
-            gap: 12px;
+            gap: 14px;
             align-items: baseline;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
+            border-radius: 8px;
+            transition: background var(--transition);
+        }
+        .award-list li:hover {
+            background: linear-gradient(90deg, rgba(251, 191, 36, 0.06), rgba(244, 114, 182, 0.05), transparent);
         }
         .award-list li:last-child { border-bottom: none; }
-        .award-list .icon-star { color: var(--accent-gold); font-size: 1rem; }
+        .award-list .icon-star {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            text-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
+        }
 
         /* ============================================================
                    FOOTER
                    ============================================================ */
         footer {
             margin-top: 60px;
-            padding: 32px 0 20px;
+            padding: 34px 0 22px;
             border-top: 1px solid var(--border-glass);
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             letter-spacing: 0.02em;
         }
         footer .heart { color: var(--accent-pink); }
@@ -898,34 +903,35 @@
         @media (max-width: 900px) {
             .expertise-grid { grid-template-columns: 1fr; }
             .teaching-grid { grid-template-columns: 1fr; }
-            .hero-stats { gap: 28px; }
+            .hero-stats { gap: 30px; }
             .hero-layout {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
             .hero-photo-wrap {
                 order: -1;
-                width: 200px; height: 200px;
+                width: 220px; height: 220px;
                 justify-self: start;
             }
         }
 
         @media (max-width: 700px) {
+            html { font-size: 16px; }
             nav { padding: 12px 20px; }
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
-                max-width: 300px;
+                width: 74%;
+                max-width: 320px;
                 height: 100vh;
                 background: rgba(5, 6, 15, 0.97);
                 backdrop-filter: blur(30px);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 24px;
-                font-size: 1rem;
+                gap: 26px;
+                font-size: 1.05rem;
                 transition: right 0.4s ease;
                 border-left: 1px solid var(--border-glass);
                 padding: 40px;
@@ -937,13 +943,13 @@
             .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
             .container { padding: 0 16px 40px; }
-            .glass-card { padding: 20px; }
+            .glass-card { padding: 22px; }
             .edu-item { flex-direction: column; gap: 6px; }
             .edu-year { min-width: auto; }
-            .section-header h2 { font-size: 1.4rem; }
-            .hero-name { font-size: clamp(2.4rem, 10vw, 3.6rem); }
+            .section-header h2 { font-size: 1.6rem; }
+            .hero-name { font-size: clamp(2.6rem, 10vw, 4rem); }
             .hero-stats { gap: 20px; }
-            .hero-stat .number { font-size: 1.4rem; }
+            .hero-stat .number { font-size: 1.6rem; }
             .exp-item .exp-header { flex-direction: column; gap: 2px; }
         }
 
@@ -952,7 +958,7 @@
             .teaching-item { flex-direction: column; gap: 2px; }
             .teaching-item .term { min-width: auto; }
             .pub-list li.pub-item { gap: 14px; }
-            .pub-cover { width: 60px; height: 80px; }
+            .pub-cover { width: 68px; height: 92px; }
         }
     </style>
 </head>
@@ -1085,7 +1091,7 @@
         </section>
 
         <!-- ============================================================
-        RESEARCH INTERESTS (from CV)
+        RESEARCH INTERESTS
         ============================================================ -->
         <section id="research">
             <div class="section-header reveal">
@@ -1099,57 +1105,6 @@
                     nonlinear transport phenomena (nonlinear Hall effect, in-plane Hall effect, full-wave mixing);
                     Kagome lattice compounds (FeSn, Fe₃Sn, Co₃Sn); topological antiferromagnets, Weyl semimetals and altermagnets.
                 </p>
-            </div>
-        </section>
-
-        <!-- ============================================================
-        RESEARCH EXPERIENCE (from CV)
-        ============================================================ -->
-        <section id="experience">
-            <div class="section-header reveal">
-                <span class="icon">🧪</span>
-                <h2>Research Experience</h2>
-                <span class="line"></span>
-            </div>
-            <div class="glass-card reveal">
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-title">Graduate Research Assistant</span>
-                        <span class="exp-date">2021 – 2026</span>
-                    </div>
-                    <div class="exp-place">
-                        <em>The Hong Kong University of Science and Technology</em> · Advisor: Prof. Berthold Jäck
-                    </div>
-                    <ul>
-                        <li>Commissioned, assembled, and maintained two AI-automated Molecular Beam Epitaxy (MBE) systems, leveraging Bayesian optimization-based machine learning algorithms to autonomously optimize thin-film growth.</li>
-                        <li>Epitaxial thin-film synthesis of intermetallic Kagome lattice compounds (FeSn, Fe₃Sn, Co₃Sn) using Molecular Beam Epitaxy (MBE).</li>
-                        <li>Micro- and nanofabrication: multi-step optical lithography for patterning Hall bar devices (6- and 12-terminal geometries) and cross Co-planar Wave Guides (CPW) geometries; Focused Ion Beam (FIB) milling for TEM lamella preparation and Hall device prototyping for antimonides (CrSb).</li>
-                        <li>Structural and chemical characterization: Thin-film X-ray Diffraction (XRD), X-ray Reflectivity (XRR), and phi-scans for phase identification, thickness determination, and epitaxial relationship analysis.</li>
-                        <li>Advanced microscopy: Scanning/Transmission Electron Microscopy (STEM/TEM) for atomic-scale structural and chemical analysis; In-situ Reflection High-Energy Electron Diffraction (RHEED) for real-time surface reconstruction and growth dynamics; Atomic Force Microscopy (AFM) for surface roughness measurements.</li>
-                        <li>Magnetotransport measurements: Nonlinear electric Hall effect, in-plane electric Hall effect, and electric full-wave mixing measurements using oscilloscope-based techniques at low and room temperature.</li>
-                        <li>Microwave measurements: Used a Vector Network Analyser (VNA) to test a 3rd-order Nonlinear Hall response in the range of (1–6 GHz) on a cross CPW transmission line.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================================
-        NOTABLE CONTRIBUTIONS (from CV)
-        ============================================================ -->
-        <section id="contributions">
-            <div class="section-header reveal">
-                <span class="icon">💡</span>
-                <h2>Notable Contributions</h2>
-                <span class="line"></span>
-            </div>
-            <div class="glass-card reveal">
-                <ul class="contrib-list">
-                    <li><strong>World's first experimental demonstration</strong> of the Berry curvature quadrupole — a fundamental quantum geometric quantity — in an antiferromagnetic material, confirming the theoretical prediction by Prof. Kam Tuen Law's group at HKUST, Hong Kong.</li>
-                    <li><strong>World's first experimental observation</strong> of the Berry curvature quadrupole in a g-wave altermagnet at room temperature, extending the study of quantum geometry to this emerging class, predicted by Prof. Jenifer Cano at University of Stony Brook, USA.</li>
-                    <li><strong>World's first demonstration</strong> of multiple wave mixing (third-order nonlinear transport) in a room-temperature altermagnet, uncovering a broadband nonlinear Hall response.</li>
-                    <li>Molecular Beam Epitaxy growth and characterization of a previously unreported metastable Kagome compound, bilayer Co₃Sn, enabling exploration of its anomalous Hall response.</li>
-                    <li>Implementation of active learning and machine learning algorithms to optimize molecular beam epitaxy growth, drastically reducing the number of experimental iterations required for synthesizing complex quantum materials.</li>
-                </ul>
             </div>
         </section>
 
@@ -1195,7 +1150,7 @@
         </section>
 
         <!-- ============================================================
-        PUBLICATIONS (ALL papers with covers, from CV + website)
+        PUBLICATIONS
         ============================================================ -->
         <section id="publications">
             <div class="section-header reveal">
@@ -1204,7 +1159,6 @@
                 <span class="line"></span>
             </div>
 
-            <!-- Publication summary -->
             <div class="pub-summary reveal">
                 <span>8 publications</span>
                 <span>2 × Physical Review X (IF 14.4)</span>
@@ -1222,7 +1176,7 @@
                 <div class="sub-section-title">Preprints</div>
                 <ul class="pub-list">
 
-                    <!-- 1. Intrinsic anomalous Hall response in bilayer Co3Sn -->
+                    <!-- 1 -->
                     <li class="pub-item">
                         <div class="pub-cover cover-arxiv">
                             <div class="cover-top">
@@ -1244,7 +1198,7 @@
                         </div>
                     </li>
 
-                    <!-- 2. Active learning MBE -->
+                    <!-- 2 -->
                     <li class="pub-item">
                         <div class="pub-cover cover-arxiv">
                             <div class="cover-top">
@@ -1266,7 +1220,7 @@
                         </div>
                     </li>
 
-                    <!-- 3. Broadband nonlinear Hall response -->
+                    <!-- 3 -->
                     <li class="pub-item">
                         <div class="pub-cover cover-arxiv">
                             <div class="cover-top">
@@ -1290,7 +1244,7 @@
                         </div>
                     </li>
 
-                    <!-- 4. Distinguishing and Separating In-Plane Hall Responses -->
+                    <!-- 4 -->
                     <li class="pub-item">
                         <div class="pub-cover cover-arxiv">
                             <div class="cover-top">
@@ -1315,10 +1269,10 @@
                 </ul>
 
                 <!-- ===== Peer-Reviewed Publications ===== -->
-                <div class="sub-section-title" style="margin-top:32px;">Peer-Reviewed Publications</div>
+                <div class="sub-section-title" style="margin-top:34px;">Peer-Reviewed Publications</div>
                 <ul class="pub-list">
 
-                    <!-- 1. Nematic Order / PRX 2026 -->
+                    <!-- 1 -->
                     <li class="pub-item">
                         <div class="pub-cover">
                             <img src="images/covers/PRX.png" alt="Physical Review X cover" />
@@ -1338,7 +1292,7 @@
                         </div>
                     </li>
 
-                    <!-- 2. Room temperature anomalous in-plane Hall / Nature Communications 2025 -->
+                    <!-- 2 -->
                     <li class="pub-item">
                         <div class="pub-cover">
                             <img src="images/covers/NCOM.png" alt="Nature Communications cover" />
@@ -1358,7 +1312,7 @@
                         </div>
                     </li>
 
-                    <!-- 3. Berry Curvature Quadrupole / PRX 2024 -->
+                    <!-- 3 -->
                     <li class="pub-item">
                         <div class="pub-cover">
                             <img src="images/covers/PRX.png" alt="Physical Review X cover" />
@@ -1378,7 +1332,7 @@
                         </div>
                     </li>
 
-                    <!-- 4. Kagome flat band / Physical Review Research 2023 -->
+                    <!-- 4 -->
                     <li class="pub-item">
                         <div class="pub-cover">
                             <img src="images/covers/PRR.png" alt="Physical Review Research cover" />
@@ -1398,7 +1352,7 @@
                         </div>
                     </li>
 
-                    <!-- 5. Fluorographene-MoS2 / Material Today 2021 -->
+                    <!-- 5 -->
                     <li class="pub-item">
                         <div class="pub-cover">
                             <img src="images/covers/MATTOD.png" alt="Material Today cover" />
@@ -1421,7 +1375,7 @@
                 </ul>
 
                 <!-- ===== Patents ===== -->
-                <div class="sub-section-title" style="margin-top:32px;">Patents</div>
+                <div class="sub-section-title" style="margin-top:34px;">Patents</div>
                 <div class="patent-item">
                     <span class="patent-badge">Pending</span>
                     <div class="patent-text">
@@ -1512,7 +1466,7 @@
         </section>
 
         <!-- ============================================================
-        RESEARCH INTERNSHIPS (from CV)
+        RESEARCH INTERNSHIPS
         ============================================================ -->
         <section id="internships">
             <div class="section-header reveal">
@@ -1562,7 +1516,7 @@
         ============================================================ -->
         <footer>
             <p>Dr. Soumya Sankar · Department of Physics · HKUST</p>
-            <p style="margin-top:4px;">
+            <p style="margin-top:6px;">
                 Updated: <span id="updateDate"></span> &nbsp;·&nbsp; Made with <span class="heart">♥</span> &amp; ⚛
             </p>
         </footer>
@@ -1575,11 +1529,9 @@
     <script>
         (function() {
 
-            // ---- Set update date ----
             document.getElementById('updateDate').textContent =
                 new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-            // ---- Mobile nav toggle ----
             const toggle = document.getElementById('navToggle');
             const links = document.getElementById('navLinks');
 
@@ -1588,7 +1540,6 @@
                 links.classList.toggle('open');
             });
 
-            // Close nav on link click
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     toggle.classList.remove('open');
@@ -1596,7 +1547,6 @@
                 });
             });
 
-            // ---- Navbar scroll effect ----
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 60) {
@@ -1606,7 +1556,6 @@
                 }
             });
 
-            // ---- Intersection Observer for reveal animations ----
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1620,7 +1569,6 @@
             });
             reveals.forEach(el => observer.observe(el));
 
-            // ---- Smooth anchor scroll ----
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
