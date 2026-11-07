@@ -12,16 +12,16 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg:          #070a0d;
+            --bg:          #04070a;
             --bg-elev:     #0b0f14;
-            --panel:       rgba(255, 255, 255, 0.024);
-            --panel-hover: rgba(255, 255, 255, 0.045);
-            --line:        rgba(255, 255, 255, 0.085);
-            --line-strong: rgba(255, 255, 255, 0.17);
+            --panel:       rgba(12, 17, 22, 0.68);
+            --panel-hover: rgba(18, 25, 32, 0.80);
+            --line:        rgba(255, 255, 255, 0.10);
+            --line-strong: rgba(255, 255, 255, 0.20);
 
-            --text:        #e7eaee;
-            --text-2:      #a6b0bd;
-            --text-3:      #6d7886;
+            --text:        #f2f5f9;
+            --text-2:      #bac4d0;
+            --text-3:      #8492a1;
 
             --accent:      #7cc4d6;
             --accent-soft: rgba(124, 196, 214, 0.12);
@@ -67,6 +67,8 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+            opacity: 0.40;
+            filter: saturate(0.85);
         }
 
         #bg-veil {
@@ -75,9 +77,9 @@
             z-index: 0;
             pointer-events: none;
             background:
-                radial-gradient(ellipse at 50% 0%, rgba(124, 196, 214, 0.06), transparent 58%),
-                radial-gradient(ellipse at 50% 100%, rgba(7, 10, 13, 0.65), transparent 60%),
-                linear-gradient(180deg, rgba(7, 10, 13, 0.32), rgba(7, 10, 13, 0.08) 35%, rgba(7, 10, 13, 0.55));
+                radial-gradient(ellipse at 50% 0%, rgba(124, 196, 214, 0.045), transparent 58%),
+                radial-gradient(ellipse at 50% 100%, rgba(4, 7, 10, 0.88), transparent 62%),
+                linear-gradient(180deg, rgba(4, 7, 10, 0.74), rgba(4, 7, 10, 0.52) 35%, rgba(4, 7, 10, 0.82));
         }
 
         #fig-caption {
@@ -103,7 +105,7 @@
             width: 100%;
             z-index: 1000;
             padding: 14px 40px;
-            background: rgba(7, 10, 13, 0.72);
+            background: rgba(4, 7, 10, 0.87);
             backdrop-filter: blur(18px) saturate(1.2);
             border-bottom: 1px solid var(--line);
             display: flex;
@@ -112,7 +114,7 @@
             transition: background var(--ease);
         }
 
-        nav.scrolled { background: rgba(7, 10, 13, 0.94); }
+        nav.scrolled { background: rgba(4, 7, 10, 0.97); }
 
         .nav-logo {
             font-family: 'Space Grotesk', sans-serif;
@@ -320,8 +322,9 @@
             display: grid;
             place-items: center;
             flex-shrink: 0;
+            background: radial-gradient(circle at 50% 32%, #1a2530 0%, #0a1016 72%);
             border: 1px solid var(--line-strong);
-            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.012), 0 30px 80px rgba(0, 0, 0, 0.65);
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.02), 0 30px 80px rgba(0, 0, 0, 0.75);
         }
 
         /* rotating measurement ring */
@@ -345,7 +348,7 @@
             object-position: center top;
             border-radius: 50%;
             display: block;
-            filter: saturate(0.92) contrast(1.02);
+            filter: saturate(1.03) contrast(1.06) brightness(1.10);
         }
 
         /* ============================================================
@@ -354,6 +357,8 @@
         .glass-card {
             position: relative;
             background: var(--panel);
+            -webkit-backdrop-filter: blur(3px) saturate(1.05);
+            backdrop-filter: blur(3px) saturate(1.05);
             border: 1px solid var(--line);
             border-radius: var(--radius);
             padding: 34px 38px;
@@ -847,7 +852,7 @@
                 width: 76%;
                 max-width: 320px;
                 height: 100vh;
-                background: rgba(7, 10, 13, 0.98);
+                background: rgba(4, 7, 10, 0.98);
                 backdrop-filter: blur(26px);
                 flex-direction: column;
                 justify-content: center;
@@ -1807,14 +1812,46 @@
                 });
             });
 
-            /* ---------- Hero photo fallback ---------- */
+            /* ---------- Hero photo: try several paths, then fall back ---------- */
             const heroImg = document.getElementById('heroPhoto');
             if (heroImg) {
-                heroImg.addEventListener('error', function() {
+                const photoPaths = [
+                    heroImg.getAttribute('src') || '',
+                    'images/soumya-sankar.png',
+                    'images/soumya-sankar.jpg',
+                    'images/soumya-sankar.jpeg',
+                    'images/soumya-sankar.webp',
+                    'images/soumya-sankar.JPG',
+                    'images/soumya-sankar.PNG',
+                    'soumya-sankar.png',
+                    'soumya-sankar.jpg',
+                    'soumya-sankar.jpeg',
+                    'soumya-sankar.webp',
+                    'images/photo.png',
+                    'images/photo.jpg',
+                    'images/profile.png',
+                    'images/profile.jpg',
+                    'photo.png',
+                    'photo.jpg',
+                    'profile.png',
+                    'profile.jpg'
+                ].filter(function(v, i, a) { return v && a.indexOf(v) === i; });
+
+                let photoIdx = 0;
+                heroImg.src = photoPaths[photoIdx];
+
+                const onPhotoError = function() {
+                    photoIdx++;
+                    if (photoIdx < photoPaths.length) {
+                        heroImg.src = photoPaths[photoIdx];
+                        return;
+                    }
+
+                    heroImg.removeEventListener('error', onPhotoError);
                     console.warn(
-                        '[SoumyaSankar] Hero photo not found at "' + heroImg.getAttribute('src') + '".\n' +
-                        'Fix: create an "images" folder next to this HTML file and place the photo there as "soumya-sankar.png" ' +
-                        '(or update the src attribute to the correct path).'
+                        '[SoumyaSankar] Hero photo not found. Tried: ' + photoPaths.join(', ') + '\n' +
+                        'Place your portrait next to this HTML file as "soumya-sankar.jpg" ' +
+                        '(or in an "images" folder) and it will load automatically.'
                     );
 
                     heroImg.style.display = 'none';
@@ -1832,7 +1869,9 @@
                         div.textContent = 'SS';
                         parent.appendChild(div);
                     }
-                });
+                };
+
+                heroImg.addEventListener('error', onPhotoError);
             }
 
             /* ---------- Journal cover fallback ---------- */
